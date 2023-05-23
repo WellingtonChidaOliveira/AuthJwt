@@ -20,7 +20,7 @@ namespace Application.UseCases.Authorization
             var user = await _userRepository.GetUser(request.User.Email);
             if (user is null) return new AuthorizationCommandResponse { Token = null };
 
-            var tokenResult = _jwtProvider.GenerateJwtToken(request.User);
+            var tokenResult = _jwtProvider.GenerateJwtToken(user);
             return new AuthorizationCommandResponse { Token = tokenResult };
 
 

@@ -14,6 +14,11 @@ var host = new HostBuilder()
         services.AddMediatR(assembly);
         services.AddSingleton<IJwtProvider, JwtProvider>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole("admin"));
+        });
+
     })
     .Build();
 

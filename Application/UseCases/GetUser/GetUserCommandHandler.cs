@@ -18,7 +18,7 @@ namespace Application.UseCases.GetUser
         public async Task<GetUserCommandResponse> Handle(GetUserCommand request, CancellationToken cancellationToken)
         {
             await GetUser(request.Email);
-            return  new GetUserCommandResponse { user = users };
+            return  new GetUserCommandResponse { user = users, Message = "Success" };
 
         }
 

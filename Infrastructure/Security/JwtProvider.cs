@@ -15,6 +15,7 @@ namespace Infrastructure.Security
             {
                  //TODO: Add roles to claims 
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Roles)
             };
 
             //TODO: Add secret to key vault or something

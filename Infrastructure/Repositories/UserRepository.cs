@@ -9,11 +9,11 @@ namespace Infrastructure.Repositories
     {
         private readonly List<User> mockUser = new List<User>
             {
-               new User { Email = "email1@example.com", Password = "senha1" },
-               new User { Email = "email2@example.com", Password = "senha2" },
-               new User { Email = "email3@example.com", Password = "senha3" },
-               new User { Email = "email4@example.com", Password = "senha4" },
-               new User { Email = "email5@example.com", Password = "senha5" }
+               new User { Email = "email1@example.com", Password = "senha1", Roles = "Admin" },
+               new User { Email = "email2@example.com", Password = "senha2", Roles = "User" },
+               new User { Email = "email3@example.com", Password = "senha3", Roles = "User" },
+               new User { Email = "email4@example.com", Password = "senha4", Roles = "User" },
+               new User { Email = "email5@example.com", Password = "senha5", Roles = "User" }
             };
         public async Task<User> CreateUser(User user)
         {
