@@ -7,30 +7,23 @@ namespace Application.UseCases.Authorization
     public class AuthorizationCommandHandler : IRequestHandler<AuthorizationCommand, AuthorizationCommandResponse>
     {
         private readonly IJwtProvider _jwtProvider;
-        //private readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public AuthorizationCommandHandler(IJwtProvider jwtProvider)
+        public AuthorizationCommandHandler(IJwtProvider jwtProvider, IUserRepository userRepository)
         {
             _jwtProvider = jwtProvider;
-            //_userRepository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<AuthorizationCommandResponse> Handle(AuthorizationCommand request, CancellationToken cancellationToken)
         {
-            if (request is not null)
-            {
-                //var user = await _userRepository.GetUser(request.User.Email);
-                //if (user is null) return new AuthorizationCommandResponse { Token = null, Message = "Invalid User!" };
+            var user = await _userRepository.GetUser(request.User.Email);
+            if (user is null) return new AuthorizationCommandResponse { Token = null };
 
-                var tokenResult = _jwtProvider.GenerateJwtToken(request.User);
-                return new AuthorizationCommandResponse { Token = tokenResult };
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-           
-            
+            var tokenResult = _jwtProvider.GenerateJwtToken(request.User);
+            return new AuthorizationCommandResponse { Token = tokenResult };
+
+
         }
     }
 }

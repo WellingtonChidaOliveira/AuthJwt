@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Infrastructure.Security
 {
-    public class JwtProvider : IJwtProvider
+    public sealed class JwtProvider : IJwtProvider
     {
         public Token GenerateJwtToken(User user)
         {
